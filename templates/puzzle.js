@@ -99,7 +99,7 @@ function dragEnd() {
 function checkPuzzleSolved() {
     let expectedURLs = [];
     for (let i = 1; i <= rows * columns; i++) {
-        expectedURLs.push("https://expert-waffle-jj5w7v4r6grrcqv6v-5000.app.github.dev/images/" + i + ".jpg");
+        expectedURLs.push("https://packetbytebuf.github.io/biteblocks/" + i + ".jpg");
     }
 
     let tiles = document.querySelectorAll("#board img");
