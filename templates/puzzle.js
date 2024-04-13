@@ -80,6 +80,9 @@ function dragDrop() {
 
 function dragEnd() {
     if (currTile.src.includes("blank")) {
+        if (checkPuzzleSolved()) {
+            document.getElementById("status").innerText = "Status: Solved!";
+        }
         return;
     }
     let currImg = currTile.src;
@@ -89,4 +92,22 @@ function dragEnd() {
 
     turns += 1;
     document.getElementById("turns").innerText = turns;
+    document.getElementById("status").innerText = "Status: " + (checkPuzzleSolved() ? "Solved" : "Not Solved");
+}
+
+// honestly, this is gpt
+function checkPuzzleSolved() {
+    let expectedURLs = [];
+    for (let i = 1; i <= rows * columns; i++) {
+        expectedURLs.push("https://expert-waffle-jj5w7v4r6grrcqv6v-5000.app.github.dev/images/" + i + ".jpg");
+    }
+
+    let tiles = document.querySelectorAll("#board img");
+    for (let i = 0; i < tiles.length; i++) {
+        let tileURL = tiles[i].src;
+        if (tileURL !== expectedURLs[i]) {
+            return false; // Puzzle is not solved
+        }
+    }
+    return true; // Puzzle is solved
 }
